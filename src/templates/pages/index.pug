@@ -1,0 +1,13 @@
+extends ../template
+
+block variables
+  - var title = 'Benvenuti'
+
+block content
+  h1 Home
+  form
+    label(for="email") email
+    input(name="email" id="email")
+    label(for="password") password
+    input(name="password" id="password")
+    button Accedi
