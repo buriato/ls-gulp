@@ -7,6 +7,7 @@ const notify = require("gulp-notify");
 const rename = require("gulp-rename");
 const sourcemaps = require("gulp-sourcemaps");
 const del = require("del");
+const fs = require("fs");
 const browserSync = require("browser-sync");
 const gulpWebpack = require("gulp-webpack");
 const webpack = require("webpack");
