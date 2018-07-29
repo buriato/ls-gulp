@@ -1,0 +1,40 @@
+mixin icon(name,mod)
+	- mod = mod || ''
+	svg(class="icon icon-" + name + ' ' + mod)
+		use(xlink:href="/static/img/svg/symbol/sprite.svg#" + name)
+
+
+mixin nav(className, activeItem, colorClass)
+	nav(class= className)
+		ul(class= className + '__list')
+			each link,title in nav.mainNav
+				if title == 'About'
+					li(class= className + '__item ' + className + '__item_active')
+						a(class= className + '__link '+ colorClass href= link)= title
+				else
+					li(class= className + '__item')
+						a(class= className + '__link ' + colorClass href= link)= title
+
+
+mixin socials(socialsClass, colorClass)
+	ul(class= socialsClass)
+		each link,title in nav.socials
+			li(class= socialsClass + '__item')
+				a(class= socialsClass + '__link ' + socialsClass + '__link_' + title href= link)
+					+icon(title+"-square")
+
+mixin title(title, img, addClass)
+	.title(style=`background-image: url('static/img/bg/${img}');` class= addClass)= title
+
+mixin simpleTitle(title, addClass)
+	.simpleTitle(class= addClass)= title
+
+
+mixin parallax
+	- var n=10
+	.parallax#parallax
+		while n>0
+			.parallax__layer
+
+				img(src="static/img/parallax/"+n + ".png").parallax__img
+				- n--

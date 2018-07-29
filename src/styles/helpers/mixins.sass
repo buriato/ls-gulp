@@ -1,0 +1,63 @@
+// font-face mixin
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false )
+  @font-face
+    font-family: $font-family
+    font-weight: $weight
+    font-style: $style
+
+    @if $asset-pipeline == true
+      src: font-url('#{$file-path}.eot')
+      src: font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'), font-url('#{$file-path}.woff') format('woff'), font-url('#{$file-path}.ttf') format('truetype')
+    @else
+      src: url('#{$file-path}.eot')
+      src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), url('#{$file-path}.woff') format('woff'), url('#{$file-path}.ttf') format('truetype')
+
+
+
+// rem font size
+@function rem($size)
+  $remSize: $size / 16
+  @return $remSize * 1rem
+
+@mixin font-size($size)
+  font-size: $size*1px
+  font-size: rem($size)
+
+
+// Define vertical, horizontal, or both position
+@mixin center($position)
+  position: absolute
+
+  @if $position == 'y'
+    top: 50%
+    transform: translateY(-50%)
+
+  @else if $position == 'x'
+        left: 50%
+        transform: translate(-50%)
+
+  @else if $position == 'both'
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+
+// Using the mixin
+//.foo
+ // @include center(both)
+
+//.foo-parent
+//  position: relative
+//
+
+%clearfix
+  *zoom: 1
+
+  &:before, &:after
+    content: " "
+    display: table
+
+  &:after
+    clear: both
+// use @extend %clearfix
